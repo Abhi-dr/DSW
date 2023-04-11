@@ -1,0 +1,267 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'assets/images/GLA_University_logo.png' %}">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="{% static 'assets/images/GLA_University_logo.png' %}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');</style>
+    <title>GLA Student Welfare</title>
+</head>
+<body>
+    <div class="container">
+
+<!-- ------------------------Navbar-------------------------------- -->
+        <div class="sidebar">
+            <div class="logo">
+                <span id="name"><h2>GLA</h2><h5>Welfare</h5></span>
+            </div>
+            <div class="menu_btn">
+                <span class="material-symbols-outlined" id="btn">
+                    menu
+                </span>
+                <span class="material-symbols-outlined" id="btn_close"> 
+                    close
+                </span>
+            </div>
+            <div class="menu_items">
+                <ul class="nav_list">
+                    
+                    <li>
+                        <a href="https://www.gla.ac.in/">
+                            <span id="logo_home">
+                                <img src="{% static 'assets/images/GLA_University_logo.png' %}" id="logo_home_img"> 
+                             </span>
+                            <span class="links_name">Home</span>
+                        </a>
+                        <span class="tooltip">Home</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span><i class="fa-solid fa-building-columns"></i></span>
+                            <span class="links_name">Overview</span>
+                        </a>
+                        <span class="tooltip">Overview</span>
+                    </li>
+                    <li>
+                        <a href="#" onclick="toggleTab('tab7')" id="tab7">
+                            <span class="material-symbols-outlined">
+                                hotel_class
+                            </span>
+                            <span class="links_name">Achievements</span>
+                        </a>
+                        <span class="tooltip">Achievements</span>
+                    </li> 
+                    <li>
+                        
+                            <div class="dropdown">
+                              <a href="#" onclick="view()" id="d_eff">
+                                <span id="campus_eff"><i class="fa-solid fa-graduation-cap"></i></span>
+                                <span class="links_name" id="d_btn">Campus Life</span>
+                                <span class="material-symbols-outlined" id="arrow">
+                                    arrow_right
+                                </span>
+                              </a>
+                              <!-- <span class="tooltip">Campus Life</span> -->
+                              
+                              <div class="dropdown_content" id="d_cont">
+                                <a href="#" onclick="toggleTab('tab2'), view()" id="tab2" class="sub-division"><span>Student Council</span></a>
+                                <a href="#" onclick="toggleTab('tab3'), view()" id="tab3" class="sub-division"><span>Activities</span></a>
+                                <a href="#" onclick="toggleTab('tab4'), view()" id="tab4" class="sub-division"><span>NSS</span></a>
+                                <a href="#" onclick="toggleTab('tab5'), view()" id="tab5" class="sub-division"><span>NCC</span></a>
+                                <a href="#" onclick="toggleTab('tab6'), view()" id="tab6" class="sub-division"><span>Sports & Games</span></a>
+                              </div>
+                            </div>
+                          
+                    </li>
+                    <li>
+                        <a href="#" onclick="toggleTab('tab8')" id="tab8" class="griv">
+                            <span class="material-symbols-outlined">
+                                mail
+                                </span>
+                            <span class="links_name">Grivance</span>
+                        </a>
+                        <span class="tooltip">Grivance</span>
+                    </li> 
+                    <li>
+                        <a href="#" onclick="toggleTab('tab9')" id="tab9" class="eve">
+                            <span class="material-symbols-outlined">
+                                campaign
+                                </span>
+                            <span class="links_name">Events</span>
+                        </a>
+                        <span class="tooltip">Events</span>
+                    </li> 
+                </ul>   
+                    <div class="login">
+                        <button type="Login" class="login_btn" onclick="window.location.href='/portal/login';">Login</button>
+                            <span class="material-symbols-outlined" id="login_logo" onclick="window.location.href='/portal/login';">
+                                login
+                            </span>
+                    </div> 
+                <!-- <div class="logout">
+                        <button type="Login" class="login_btn" onclick="window.location.href='login/Login.html';">Logout</button>
+                            <span class="material-symbols-outlined" id="login_logo" onclick="window.location.href='login/Login.html';">
+                                logout
+                            </span> 
+                    </div>  -->
+            </div>
+        </div>
+       
+
+<!-- --------------Home Content---------------- -->
+
+
+        <div class="home_content">
+            <div class="gla">
+                <a href="https://www.gla.ac.in/" class="gla_logo"><img src="{% static 'assets/images/logo.png' %}"></a>
+            </div>
+
+
+<!-- -------Student Life---------- -->
+            <div id="student-life">
+                <div class="carousel-container">
+                    <div class="carousel-image-wrapper">
+                        <img class="carousel-image" src="pages/images/image1.jpg" alt="Image 1">
+                        <img class="carousel-image" src="pages/images/image2.jpg" alt="Image 2">
+                        <img class="carousel-image" src="pages/images/image3.jpg" alt="Image 3">
+                        <img class="carousel-image" src="pages/images/image4.jpg" alt="Image 4">
+                    </div>
+                </div>
+                <div class="overlay">
+                    <h1>Students' Life</h1>
+                </div>
+                <div class="navbar">
+                    <div class="page">
+                        <div class="page_info">
+                            <p>Students' Welfare</p>
+                        </div>
+                        <div class="page_info"><span class="material-symbols-outlined">
+                            arrow_forward_ios
+                            </span></div>
+                        <div class="page_info">
+                            <p>Overview</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="info">
+                    <div class="heading">
+                        <h2>Heading</h2>
+                    </div>
+                    <div class="para">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi, tempore, quo facilis dolorem temporibus vel suscipit nisi eveniet animi, reiciendis asperiores? Sint doloremque maiores dolorum fuga ipsam officia in.</p>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="heading">
+                        <h2>Heading</h2>
+                    </div>
+                    <div class="para">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi, tempore, quo facilis dolorem temporibus vel suscipit nisi eveniet animi, reiciendis asperiores? Sint doloremque maiores dolorum fuga ipsam officia in.</p>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="heading">
+                        <h2>Heading</h2>
+                    </div>
+                    <div class="para">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi, tempore, quo facilis dolorem temporibus vel suscipit nisi eveniet animi, reiciendis asperiores? Sint doloremque maiores dolorum fuga ipsam officia in.</p>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="heading">
+                        <h2>Heading</h2>
+                    </div>
+                    <div class="para">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi, tempore, quo facilis dolorem temporibus vel suscipit nisi eveniet animi, reiciendis asperiores? Sint doloremque maiores dolorum fuga ipsam officia in.</p>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+
+<!-- ----------------Tab Content----------------- -->
+
+        <div class="tab-content" id="content1">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="">
+            </iframe>
+        </div>
+        
+        <div class="tab-content" id="content2">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="/templates/index/council.html" loading="lazy">
+            </iframe>
+        </div>
+        <div class="tab-content" id="content3">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="" loading="lazy">
+            </iframe>
+        </div>
+        <div class="tab-content" id="content4">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="" loading="lazy">
+            </iframe>
+        </div>
+        <div class="tab-content" id="content5">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="" loading="lazy">
+            </iframe>
+        </div>
+        <div class="tab-content" id="content6">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="/templates/index/sports.html" loading="lazy">
+            </iframe>
+        </div>
+        <div class="tab-content" id="content7">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="/templates/index/achievement.html" loading="lazy">
+            </iframe>
+        </div>
+        <div class="tab-content" id="content8">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="/templates/index/complaints.html" loading="lazy">
+            </iframe>
+        </div>
+        <div class="tab-content" id="content9">
+            <span class="close_icon"><i class="fa-regular fa-circle-xmark"></i></span>
+            <iframe src="/templates/index/events.html" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="footer_info">
+        <div class="footer_info_heading">
+            <h2>GLA University</h2>
+        </div>
+    </div>
+</div>
+
+
+
+    
+<script src="https://kit.fontawesome.com/ac1aec28f7.js" crossorigin="anonymous"></script>
+<script src="{% static 'assets/js/script.js' %}"></script>
+<!-- ===================================AOS Animation============================== -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
