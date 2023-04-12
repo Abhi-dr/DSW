@@ -16,18 +16,25 @@
     </style>
 
     <style>
-        .logout_btn{
+        .logout_btn {
             transition: all 0.3s ease;
-            cursor:pointer;position: absolute; right: 5%;border-radius:5px;font-weight:600;top:4%;padding: 10px;}
-        .logout_btn:hover
-        {
+            cursor: pointer;
+            position: absolute;
+            right: 5%;
+            border-radius: 5px;
+            font-weight: 600;
+            top: 4%;
+            padding: 10px;
+        }
+
+        .logout_btn:hover {
             background-color: rgb(36, 178, 8);
             color: white;
             transform: translateY(-10%);
         }
     </style>
 
-    
+
     <title>Dean Portal</title>
 
 </head>
@@ -121,9 +128,8 @@
             <div class="navbar">
                 <h1>Dean Portal</h1>
 
-                <button type="Logout" class="logout_btn"
-                onclick="window.location.href='logout';">Logout
-            </button>
+                <button type="Logout" class="logout_btn" onclick="window.location.href='logout';">Logout
+                </button>
             </div>
 
             <!-- ===================================== Complaint ====================================== -->
@@ -133,7 +139,7 @@
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h2>Latest Complaints</h2>
+                                    <h2>Pending Complaints</h2>
                                 </div>
                             </div>
                         </div>
@@ -145,6 +151,13 @@
                                     <th>Department</th>
                                     <th>Complaint</th>
                                     <th>Date</th>
+
+
+                                    <!-- pta ni kse chl ra h pr chl ra h😂 -->
+                                    {% if complaint.related_document == None %}
+                                    <th>Related Document</th>
+                                    {% endif %}
+
                                     <th>STATUS</th>
                                 </tr>
                             </thead>
@@ -159,7 +172,14 @@
                                     <td>{{ complaint.department }}</td>
                                     <td>{{ complaint.complaint }}</td>
                                     <td>{{ complaint.date }}</td>
-                                    <td style="border: 2px solid rgb(255, 167, 5); border-radius: 5px;">NOT SOLVED</td>
+                                    {% if complaint.related_document %}
+                                    <td>
+                                        <center>
+                                            <a href="{{ complaint.related_document.url }}" target="_blank">View</a>
+                                        </center>
+                                    </td>
+                                    {% endif %}
+                                    <td style="border: 2px solid rgb(255, 55, 55); border-radius: 5px;">NOT SOLVED</td>
                                 </tr>
 
                                 {% endfor %}
@@ -192,9 +212,8 @@
                                     <th>Organizer</th>
                                     <th>Description</th>
                                     <th>Date</th>
-                                    <th>Venue</th>
-                                    <th>Event Poster</th>
                                     <th>Budget</th>
+                                    <th>Event Poster</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -210,8 +229,7 @@
                                     <td>{{ event.organizer }}</td>
                                     <td>{{ event.description }}</td>
                                     <td>{{ event.date }}</td>
-                                    <td>{{ event.venue }}</td>
-                                    <td>NOT AVAILABLE </td>
+                                    <td><a href="{{ event.budget.url }}" target="_blank">View</a></td>
 
                                     {% if event.event_poster %}
 
@@ -226,7 +244,7 @@
 
                                     <td>
                                         <button type="button" style="all:unset"
-                                        onclick="return confirm('Are you sure you want to ACCEPT this Event?');">
+                                            onclick="return confirm('Are you sure you want to ACCEPT this Event?');">
 
                                             <a href="approve_event/{{ event.id }}" style="text-decoration: none;"
                                                 class="btn btn-md manage">Accept</a></button>
@@ -277,16 +295,14 @@
                             </thead>
                             <tbody>
 
-                                {% for achievement in achievements %}
+                                {% for achievement in unapproved_achievements %}
 
                                 <tr>
                                     <td>{{ achievement.id }}</td>
                                     <td>{{ achievement.title }}</td>
                                     <td>{{ achievement.date }}</td>
                                     <td>{{ achievement.description }}</td>
-
                                     <td><a href="{{ achievement.document.url }}" target="_blank">View</a></td>
-
                                     {% if achievement.is_approved == True %}
                                     <td style="border: 2px solid rgb(26, 220, 26); border-radius: 5px;">APPROVED</td>
                                     {% else %}
@@ -296,9 +312,10 @@
 
                                     <td>
                                         <button type="button" style="all:unset"
-                                        onclick="return confirm('Are you sure you want to APPROVE this Event?');">
+                                            onclick="return confirm('Are you sure you want to APPROVE this Event?');">
 
-                                            <a href='{% url "approve_achievement"id=achievement.id}' style="text-decoration: none;"
+                                            <a href='approve_achievement/{{achievement.id}}'
+                                                style="text-decoration: none;"
                                                 class="btn btn-md manage">Accept</a></button>
 
                                         &nbsp;

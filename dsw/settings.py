@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'sport.apps.SportConfig',
     'student_council.apps.StudentCouncilConfig',
     'portal.apps.PortalConfig',
+    'grivance.apps.GrivanceConfig',
+    'event.apps.EventConfig',
 ]
 
 MIDDLEWARE = [

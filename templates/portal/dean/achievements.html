@@ -122,7 +122,7 @@
                 <h1>Dean Portal > <small>Achievements</small> </h1>
 
                 <button type="Logout" class="logout_btn"
-                onclick="window.location.href='logout';">Logout
+                onclick="window.location.href='../logout';">Logout
             </button>
             </div>
 
@@ -147,7 +147,6 @@
                                     <th>Description</th>
                                     <th>Document</th>
                                     <th>STATUS</th>
-                                    <th>ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,26 +163,15 @@
 
                                     {% if achievement.is_approved == True %}
                                     <td style="border: 2px solid rgb(26, 220, 26); border-radius: 5px;">APPROVED</td>
+
+                                    {% elif achievement.is_rejected == True %}
+                                    <td style="border: 3px solid rgb(254, 83, 83); border-radius: 7px;">REJECTED
+
+
                                     {% else %}
                                     <td style="border: 2px solid rgb(255, 167, 5); border-radius: 5px;">NOT APPROVED
                                     </td>
                                     {% endif %}
-
-                                    <td>
-                                        <button type="button" style="all:unset"
-                                        onclick="return confirm('Are you sure you want to ACCEPT this Event?');">
-
-                                            <a href="approve_achievement/{{ achievement.id }}" style="text-decoration: none;"
-                                                class="btn btn-md manage">Accept</a></button>
-
-                                        &nbsp;
-
-
-                                        <button type="button" style="all:unset"
-                                            onclick="return confirm('Are you sure you want to REJECT this Event?');">
-                                            <a href="reject_achievement/{{achievement.id}}" class=" btn btn-md manage"
-                                                style="background-color: rgb(255, 134, 134); text-decoration: none;">Reject</a></button>
-                                    </td>
 
                                 </tr>
 

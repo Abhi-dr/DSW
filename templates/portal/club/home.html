@@ -16,19 +16,26 @@
     </style>
 
     <style>
-        .logout_btn{
+        .logout_btn {
             transition: all 0.3s ease;
-            cursor:pointer;position: absolute; right: 5%;border-radius:5px;font-weight:600;top:4%;padding: 10px;}
-        .logout_btn:hover
-        {
+            cursor: pointer;
+            position: absolute;
+            right: 5%;
+            border-radius: 5px;
+            font-weight: 600;
+            top: 4%;
+            padding: 10px;
+        }
+
+        .logout_btn:hover {
             background-color: rgb(36, 178, 8);
             color: white;
             transform: translateY(-10%);
         }
     </style>
 
-    
-    <title>CLUB Portal</title>
+
+    <title>{{ club.name }} Portal</title>
 
 </head>
 
@@ -40,7 +47,7 @@
             <div class="logo">
                 <span id="name">
 
-                    <h2>CLUB</h2>
+                    <h2>{{ club.name }}</h2>
                     <h5>
                         &nbsp;&nbsp;&nbsp;&nbsp; Portal
                     </h5>
@@ -103,11 +110,11 @@
 
         <div class="home_content">
             <div class="navbar">
-                <h1>Club Portal</h1>
+                <h1>{{ club.name }} Portal</h1>
 
-                <button type="Logout" class="logout_btn"
-                onclick="window.location.href='logout';">Logout
-            </button>
+                <button type="Logout" class="logout_btn" onclick="window.location.href='logout';">Logout
+                </button>
+
             </div>
 
             <!-- ==============================Events================================ -->
@@ -133,8 +140,8 @@
                                     <th>Description</th>
                                     <th>Date</th>
                                     <th>Venue</th>
-                                    <th>Event Poster</th>
                                     <th>Budget</th>
+                                    <th>Event Poster</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -151,7 +158,8 @@
                                     <td>{{ event.description }}</td>
                                     <td>{{ event.date }}</td>
                                     <td>{{ event.venue }}</td>
-                                    <td>NOT AVAILABLE </td>
+
+                                    <td><a href="{{ event.budget.url }}" target="_blank">View</a></td>
 
                                     {% if event.event_poster %}
 
@@ -161,23 +169,39 @@
                                     <td>Not Available</td>
                                     {% endif %}
 
-                                    <td style="border: 2px solid rgb(255, 44, 44); border-radius: 5px;">NOT APPROVED
+                                    {% if event.is_approved_by_cfo %}
+                                    <td style="border: 2px solid rgb(104, 250, 59); border-radius: 5px;">APPROVED By CFO and Dean
                                     </td>
 
+                                    {% elif event.is_approved_by_dean %}
+
+                                    <td style="border: 2px solid rgb(255, 176, 57); border-radius: 5px;">APPROVED By
+                                        Dean
+                                    </td>
+
+
+                                    {% else %}
+                                    <td style="border: 2px solid rgb(255, 44, 44); border-radius: 5px;">PENDING</td>
+                                    {% endif %}
+
                                     <td>
+
+                                        {% if event.is_approved_by_cfo %}
+
                                         <button type="button" style="all:unset"
-                                        onclick="return confirm('Are you sure you want to ACCEPT this Event?');">
+                                            onclick="return confirm('Are you sure you want to REJECT this Event?');"
+                                            disabled>
+                                            <a href="delete_event/{{event.id}}" class=" btn btn-md manage"
+                                                style="background-color: rgb(152, 152, 152); text-decoration: none; pointer-events: none;">Passed</a></button>
 
-                                            <a href="approve_event/{{ event.id }}" style="text-decoration: none;"
-                                                class="btn btn-md manage">Accept</a></button>
-
-                                        &nbsp;
-
-
+                                        {% else %}
                                         <button type="button" style="all:unset"
                                             onclick="return confirm('Are you sure you want to REJECT this Event?');">
-                                            <a href="reject_event/{{event.id}}" class=" btn btn-md manage"
-                                                style="background-color: rgb(255, 134, 134); text-decoration: none;">Reject</a></button>
+                                            <a href="delete_event/{{event.id}}" class=" btn btn-md manage"
+                                                style="background-color: rgb(255, 134, 134); text-decoration: none;">Delete</a></button>
+
+                                        {% endif %}
+
                                     </td>
 
                                 </tr>

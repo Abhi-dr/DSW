@@ -151,15 +151,14 @@
                                     <th>Description</th>
                                     <th>Date</th>
                                     <th>Venue</th>
-                                    <th>Event Poster</th>
                                     <th>Budget</th>
+                                    <th>Event Poster</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                {% for event in unapproved_events %}
+                                {% for event in events %}
 
                                 <tr>
                                     <td>{{ event.id }}</td>
@@ -169,7 +168,7 @@
                                     <td>{{ event.description }}</td>
                                     <td>{{ event.date }}</td>
                                     <td>{{ event.venue }}</td>
-                                    <td>NOT AVAILABLE </td>
+                                    <td><a href="{{ event.budget.url }}" target="_blank">View</a></td>
 
                                     {% if event.event_poster %}
 
@@ -179,24 +178,16 @@
                                     <td>Not Available</td>
                                     {% endif %}
 
-                                    <td style="border: 2px solid rgb(255, 44, 44); border-radius: 5px;">NOT APPROVED
-                                    </td>
+                                    {% if event.is_approved_by_dean %}
+                                    <td style="border: 2px solid rgb(26, 220, 26); border-radius: 5px;">APPROVED</td>
 
-                                    <td>
-                                        <button type="button" style="all:unset"
-                                        onclick="return confirm('Are you sure you want to ACCEPT this Event?');">
+                                    {% elif event.is_rejected %}
+                                    <td style="border: 2px solid rgb(253, 66, 66); border-radius: 5px;">REJECTED</td>
 
-                                            <a href="approve_event/{{ event.id }}" style="text-decoration: none;"
-                                                class="btn btn-md manage">Accept</a></button>
+                                    {% else %}
+                                    <td style="border: 2px solid rgb(71, 227, 224); border-radius: 5px;">NOT APPROVED</td>
 
-                                        &nbsp;
-
-
-                                        <button type="button" style="all:unset"
-                                            onclick="return confirm('Are you sure you want to REJECT this Event?');">
-                                            <a href="reject_event/{{event.id}}" class=" btn btn-md manage"
-                                                style="background-color: rgb(255, 134, 134); text-decoration: none;">Reject</a></button>
-                                    </td>
+                                    {% endif %}
 
                                 </tr>
 

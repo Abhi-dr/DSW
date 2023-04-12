@@ -118,7 +118,7 @@
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h2>Latest Events</h2>
+                                    <h2>Pending Events</h2>
                                 </div>
                             </div>
                         </div>
@@ -133,8 +133,8 @@
                                     <th>Description</th>
                                     <th>Date</th>
                                     <th>Venue</th>
-                                    <th>Event Poster</th>
                                     <th>Budget</th>
+                                    <th>Event Poster</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -151,7 +151,8 @@
                                     <td>{{ event.description }}</td>
                                     <td>{{ event.date }}</td>
                                     <td>{{ event.venue }}</td>
-                                    <td>NOT AVAILABLE </td>
+                                    <td><a href="{{ event.budget.url }}" target="_blank">View</a></td>
+
 
                                     {% if event.event_poster %}
 
@@ -168,7 +169,7 @@
                                         <button type="button" style="all:unset"
                                         onclick="return confirm('Are you sure you want to ACCEPT this Event?');">
 
-                                            <a href="approve_event/{{ event.id }}" style="text-decoration: none;"
+                                            <a href="cfo_approve_event/{{ event.id }}" style="text-decoration: none;"
                                                 class="btn btn-md manage">Accept</a></button>
 
                                         &nbsp;
@@ -176,7 +177,7 @@
 
                                         <button type="button" style="all:unset"
                                             onclick="return confirm('Are you sure you want to REJECT this Event?');">
-                                            <a href="reject_event/{{event.id}}" class=" btn btn-md manage"
+                                            <a href="cfo_reject_event/{{event.id}}" class=" btn btn-md manage"
                                                 style="background-color: rgb(255, 134, 134); text-decoration: none;">Reject</a></button>
                                     </td>
 
