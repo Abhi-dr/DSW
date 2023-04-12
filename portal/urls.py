@@ -11,6 +11,10 @@ urlpatterns = [
     path('dean_home/events', dean_views.events, name="events"),
     path('dean_home/achievements', dean_views.achievements, name="achievements"),
     
+    path('dean_home/approve_achievement/<int:id>', dean_views.approve_achievement, name="approve_achievement"),
+    
+    # ================================================================================================
+    
     path('cfo_home', cfo_views.cfo_home, name="cfo_home"),
     path('cfo_home/events', cfo_views.events, name="cfo_events"),
     

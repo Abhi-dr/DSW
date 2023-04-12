@@ -280,7 +280,7 @@
                                 {% for achievement in achievements %}
 
                                 <tr>
-                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ achievement.id }}</td>
                                     <td>{{ achievement.title }}</td>
                                     <td>{{ achievement.date }}</td>
                                     <td>{{ achievement.description }}</td>
@@ -296,9 +296,9 @@
 
                                     <td>
                                         <button type="button" style="all:unset"
-                                        onclick="return confirm('Are you sure you want to ACCEPT this Event?');">
+                                        onclick="return confirm('Are you sure you want to APPROVE this Event?');">
 
-                                            <a href="approve_achievement/{{ achievement.id }}" style="text-decoration: none;"
+                                            <a href='{% url "approve_achievement"id=achievement.id}' style="text-decoration: none;"
                                                 class="btn btn-md manage">Accept</a></button>
 
                                         &nbsp;
