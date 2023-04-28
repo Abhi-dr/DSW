@@ -57,3 +57,5 @@ def delete_event(request, id):
     
     else:
         return redirect("login")
+    
+# This is just a comment
